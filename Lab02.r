@@ -26,3 +26,30 @@ en_blanco <- function(x){
   } 
 } 
 en_blanco(titanic)
+
+library(ggplot2) 
+library(scales) 
+ggplot(data = titanic, aes(x = Survived, y = Fare, fill = factor(Pclass))) +  
+  geom_boxplot() +  
+  geom_hline(aes(yintercept = 80),  
+             colour = "red", linetype = "dashed", lwd = 2) + 
+  scale_y_continuous(labels = dollar_format()) +  
+  theme_bw() 
+
+titanic$Survived[c(62, 830)] <- "C"
+
+barplot(table(titanic$Pclass), main="Pasajeros de Titanic por Cl
+ase", names= c("Primera", "Segunda", "Tercera")) 
+
+table(titanic$Sex) 
+barplot(table(titanic$Sex), main="Pasajeros del Titanic por Gen
+ero", names= c("Mujer", "Hombre"))
+
+counts = table(titanic$Survived, titanic$Sex) 
+barplot(counts, col=c("green","yellow"), legend = c("Murieron", "Sobr
+evivieron"), main = "Sobreviviencia de Pasajeros por Genero")
+
+counts1 = table(titanic$Survived, titanic$Pclass)  
+barplot(counts1, col=c("green","yellow"), legend = c("Murieron","Sobr
+evivieron"), main = "Sobreviviencia de Pasajeros por Clase", names= c("
+Primera", "Segunda", "Tercera")) 
