@@ -1,4 +1,4 @@
-titanic <- read.csv("/home/g/Downloads/Dataset/titanic.csv")
+titanic <- read.csv("dataset/titanic.csv")
 View(head(titanic))
 
 head(titanic_data,10) 
